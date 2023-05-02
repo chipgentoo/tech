@@ -1,0 +1,99 @@
+<div class="title_name">
+    <h1>Список дел</h1>
+    <h3>сотрудников отдела </h3>
+    <p style="color:red">работает в тестовом режиме</p>
+</div>
+<div class="container">
+    <div class="todo_btn_new">
+        <a href="?page=todo&action=add">Создать задачу</a>
+    </div>
+    <div class="todo">
+        <table class="zebra_tr">
+            <tr>
+                <th>Код</th>
+                <th>Дата</th>
+                <th>Задача</th>
+                <th>Статус</th>
+                <th>&nbsp;</th>
+            </tr>
+            <?php
+            foreach (get_list_todo() as $value) {
+                ?>
+                <tr>
+                    <td id="id"><?php echo $value[0]; ?></td>
+                    <td id="data"><?php echo date_format(date_create($value[2]), 'd-m-Y'); ?></td>
+                    <td id="content"><?php echo html_entity_decode($value[3]); ?></td>
+                    <td id="status"
+                    <?php
+                    switch ($value[4]) { //<!-- request_status  -->
+                        case 0:
+                            echo ' bgcolor="#ffff99" ';
+                            $st_name = "В работе";
+                            break;
+                        case 1:
+                            echo ' bgcolor="#99ff99" ';
+                            $st_name = "Выполнена";
+                            break;
+                    }
+                    ?>"><?php echo $st_name; ?></td>
+                    <td id="button"><a href="?page=todo&action=view&tid=<?php echo $value[0]; ?>"><img src="./layout/images/view.png"></a></td>
+                </tr>
+                <?php
+            }
+            ?>
+        </table>
+    </div>
+</div>
+<div class="count">
+    <table>
+        <tr>
+            <td id="l">
+                <form action="" method="post">
+                    Выводить по:
+                    <select name="count" onchange="if (this.value)
+                                this.form.submit()">
+                        <option value="25"<?php
+                        if ($_SESSION['filter_todo']['count'] == 25) {
+                            echo 'selected';
+                        }
+                        ?>>25</option>
+                        <option value="50"<?php
+                        if ($_SESSION['filter_todo']['count'] == 50) {
+                            echo 'selected';
+                        }
+                        ?>>50</option>
+                        <option value="100"<?php
+                        if ($_SESSION['filter_todo']['count'] == 100) {
+                            echo 'selected';
+                        }
+                        ?>>100</option>
+                        <option value="200"<?php
+                        if ($_SESSION['filter_todo']['count'] == 200) {
+                            echo 'selected';
+                        }
+                        ?>>200</option>
+                    </select>
+                    строк.
+                </form>
+            </td>
+            <td id="r">
+                <form action="" method="post">
+                    Страница:
+                    <select name="page" onchange="if (this.value)
+                                this.form.submit()">
+                                <?php
+                                for ($page = 1; $page <= get_count_page(); $page++) {
+                                    echo "<option value=" . $page;
+                                    if ($page == $_SESSION['filter_todo']['page']) {
+                                        echo " selected";
+                                    }
+                                    echo ">" . $page . "</option>
+                                    ";
+                                }
+                                ?>
+                    </select>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>

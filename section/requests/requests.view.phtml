@@ -1,0 +1,72 @@
+<div class = "title_name">
+    <h1>Заявки отделов</h1>
+    <h3>ГКУ МО "Мособлпожспас"</h3>
+</div>
+<?php
+if (isset($_GET['rid']) and filter_input(INPUT_GET, "rid") != NULL) {
+    $reqtmp = get_note_id(filter_input(INPUT_GET, "rid"));
+    ?>
+    <div class = "requests_add">
+        <form action = "" method = "post">
+            <table>
+                <tr>
+                    <td>
+                        <fieldset>
+                            <legend>Заявка от <?php echo date_format(date_create($reqtmp['request_date']), 'd-m-Y') . ' от ' . $reqtmp['depart_sn']; ?></legend>
+                            <textarea name="note" disabled="true">
+                                <?php
+                                $note = $reqtmp['request_note'];
+                                $status = $reqtmp['request_status'];
+                            } else {
+                                $note = "";
+                            }
+                            echo $note;
+                            ?>
+                        </textarea>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td><?php
+                    if (filter_input(INPUT_COOKIE, 'admin') != 1) {
+                        if ($status == 0) {
+                            ?>
+                            <button type="submit" name="cancel" value="1">Отменить</button>
+                            <?php
+                        }
+                    }
+                    if (filter_input(INPUT_COOKIE, 'admin') == 1) {
+                        if ($status == 0) {
+                            ?>
+                            <button type="submit" name="status" value="1">Принять в работу</button>
+                            <button type="submit" name="status" value="3">Отказать</button>
+                            Причина отказа:&nbsp;<input type="text" name="comment" size="45" value="">
+                        <?php } ?>
+                        <?php if ($status == 1) { ?>
+                            <button type="submit" name="status" value="2">Заявка выполнена</button>
+                            <button type="submit" name="status" value="3">Отказать</button>
+                            Причина отказа:&nbsp;<input type="text" name="comment" size="45" value="">
+                        <?php } ?>
+                        <?php if ($status == 3) { ?>
+                            <button type="submit" name="status" value="0">Новая</button>
+                            <button type="submit" name="status" value="1">Принять в работу</button>
+                        <?php } ?>
+                        <?php
+                    }
+                    ?>
+                </td>
+            </tr>
+            <?php
+            if ($reqtmp['request_comment'] != NULL OR $reqtmp['request_comment'] != "") {
+                ?>
+                <tr>
+                    <td>
+                        Причина отказа: <?php echo $reqtmp['request_comment']; ?>
+                    </td>
+                </tr>
+                <?php
+            }
+            ?>
+        </table>
+    </form>
+</div>

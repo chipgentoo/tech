@@ -1,0 +1,232 @@
+<?php
+
+function set_selected_loc() {
+
+}
+?>
+<div class="title_name">
+    <h1>Заявки отделов</h1>
+    <h3>ГКУ МО "Мособлпожспас"</h3>
+</div>
+<div class="filter">
+    <form action="" method="post" name="filter">
+        <fieldset>
+            <legend>Фильтр</legend>
+            <table>
+                <tr>
+                    <td>
+                        <?php
+                        if (filter_input(INPUT_COOKIE, "admin") == 1):
+                            ?>
+                            <!-- фильтр админа -->
+                            &nbsp;участок:
+                            <select name="loc" onchange="if (this.value)
+                                        this.form.submit()">
+                                <option value="all" <?php
+                                if ($_SESSION['filter']['loc'] == "") {
+                                    echo ' selected';
+                                }
+                                ?>>Все</option>
+                                <option value="lubertsy"<?php
+                                if ($_SESSION['filter']['loc'] == "lubertsy") {
+                                    echo ' selected';
+                                }
+                                ?>>Люберцы</option>
+                                <option value="marusino"<?php
+                                if ($_SESSION['filter']['loc'] == "marusino") {
+                                    echo ' selected';
+                                }
+                                ?>>Марусино</option>
+                                <option value="tomilino"<?php
+                                if ($_SESSION['filter']['loc'] == "tomilino") {
+                                    echo ' selected';
+                                }
+                                ?>>Томилино</option>
+                            </select>
+                            <!-- фильтр админа -->
+                        <?php endif; ?>
+                        <?php if (filter_input(INPUT_COOKIE, "admin") == 1): ?>
+                            <!-- фильтр админа -->
+                            &nbsp;отдел:<select name="depart" onchange="if (this.value)
+                                        this.form.submit()">
+                                <option value="all">Все</option>
+                                <?php foreach (get_list_departs() as $value) { ?>
+                                    <option value="<?php echo $value[0]; ?>"<?php
+                                    if ($_SESSION['filter']['depart'] == "$value[0]") {
+                                        echo ' selected';
+                                    }
+                                    ?>><?php echo $value[1]; ?></option><?php } ?>
+                            </select>
+                            <!-- фильтр админа -->
+                        <?php endif; ?>
+                        &nbsp;статус:<select name="status" onchange="if (this.value)
+                                    this.form.submit()">
+                            <option value="all" <?php
+                            if ($_SESSION['filter']['status'] == "all") {
+                                echo ' selected';
+                            }
+                            ?>>Все заявки</option>
+                            <option value="0" <?php
+                            if ($_SESSION['filter']['status'] == "0") {
+                                echo ' selected';
+                            }
+                            ?>>Новая</option>
+                            <option value="1" <?php
+                            if ($_SESSION['filter']['status'] == "1") {
+                                echo ' selected';
+                            }
+                            ?>>В работе</option>
+                            <option value="2" <?php
+                            if ($_SESSION['filter']['status'] == "2") {
+                                echo ' selected';
+                            }
+                            ?>>Выполнена</option>
+                            <option value="3" <?php
+                            if ($_SESSION['filter']['status'] == "3") {
+                                echo ' selected';
+                            }
+                            ?>>Отказано</option>
+                        </select>
+                        <br>
+                        &nbsp;нач.периода:<input type="text" name="date1" value="<?php echo $_SESSION['filter']['date1']; ?>" onfocus="this.select();lcs(this)" onclick="event.cancelBubble = true;
+                                this.select();
+                                lcs(this)" onchange="if (this.value)
+                                            this.form.submit()">
+                        &nbsp;кон.периода:<input type="text" name="date2" value="<?php echo $_SESSION['filter']['date2']; ?>" onfocus="this.select();
+                                lcs(this)" onclick="event.cancelBubble = true;
+                                        this.select();
+                                        lcs(this)" onchange="if (this.value)
+                                                    this.form.submit()"><br>
+                        &nbsp;Поиск заявки:&nbsp;&nbsp;по номеру <input type="text" name="reqid" value="<?php echo $_SESSION['filter']['reqid']; ?>">
+                        &nbsp;&nbsp;по содержимому:<input type="text" name="reqnote" value="<?php echo $_SESSION['filter']['reqnote']; ?>">
+                    </td>
+                    <td id="button">
+                        <button type="submit">&crarr;&nbsp;Применить фильтр</button><br>
+                        <a href="?page=requests&action=add">&#9997;&nbsp;Создать заявку</a>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</div>
+<table class="zebra_tr">
+    <tr>
+        <th>№</th>
+        <th>Дата</th>
+        <?php
+        if (filter_input(INPUT_COOKIE, "admin") != 0) {
+            echo "<th>Отдел</th>";
+        }
+        ?>
+        <th>Заявка</th>
+        <th>Статус</th>
+        <?php // if (filter_input(INPUT_COOKIE, "admin") == 1):            ?>
+        <!-- фильтр админа -->
+        <th>Принял</th>
+        <th>&nbsp;</th>
+        <!-- фильтр админа -->
+        <?php //endif;       ?>
+    </tr>
+    <?php foreach (get_list_requests() as $value) { ?>
+        <tr>
+            <td width="30px"><?php echo $value[0]; ?></td><!-- request_id     -->
+            <td width="80px" title="<?php echo date("H:i", strtotime($value[1])); ?>"><?php echo date("d-m-Y", strtotime($value[1])); ?></td><!-- request_date   -->
+            <?php
+            if (filter_input(INPUT_COOKIE, "admin") != 0) {
+                echo '<td width = "120px">' . $value[2] . '</td>';
+            }
+            ?>
+            <td>
+                <?php
+                echo htmlspecialchars_decode($value[3], ENT_HTML5);
+                //echo $value[3];
+                ?>
+            </td><!-- request_title  -->
+            <td<?php
+            switch ($value[5]) { //<!-- request_status  -->
+                case 1:
+                    echo ' bgcolor="#ffffcc" ';
+                    $st_name = "В работе";
+                    break;
+                case 2:
+                    echo ' bgcolor="#ccffcc" ';
+                    $st_name = "Выполнена";
+                    break;
+                case 3:
+                    echo ' bgcolor="#ff6666" ';
+                    $st_name = "Отказано";
+                    break;
+                default:
+                    echo ' bgcolor="#ffcccc" ';
+                    $st_name = "Новая";
+                    break;
+            }
+            ?> width="70px" title="<?php echo $value[5]; ?>"><?php echo $st_name; ?></td><!-- request_status -->
+            <td width="70px"><?php echo $value[6]; ?></td>
+            <td width="1px">
+                <a href="?page=requests&action=view&rid=<?php echo $value[0]; ?>" title="Просмотр заявки"><img src="./layout/images/view.png"></a>
+                <?php if (filter_input(INPUT_COOKIE, "admin") == 1): ?>
+                    <!-- фильтр админа -->
+                    <!-- <a href="?page=requests&action=edit&rid=<?php echo $value[0]; ?>"><img src="./layout/images/edit.png"></a>
+                    <a href="?page=requests&action=del&rid=<?php echo $value[0]; ?>"><img src="./layout/images/delete.png"></a>
+                    <!-- фильтр админа -->
+                <?php endif; ?>
+            </td>
+        </tr>
+        <?php
+    }
+    ?>
+</table>
+<div class="count">
+    <table>
+        <tr>
+            <td id="l">
+                <form action="" method="post">
+                    Выводить по:
+                    <select name="count" onchange="if (this.value)
+                                this.form.submit()">
+                        <option value="25"<?php
+                        if ($_SESSION['filter']['count'] == 25) {
+                            echo 'selected';
+                        }
+                        ?>>25</option>
+                        <option value="50"<?php
+                        if ($_SESSION['filter']['count'] == 50) {
+                            echo 'selected';
+                        }
+                        ?>>50</option>
+                        <option value="100"<?php
+                        if ($_SESSION['filter']['count'] == 100) {
+                            echo 'selected';
+                        }
+                        ?>>100</option>
+                        <option value="200"<?php
+                        if ($_SESSION['filter']['count'] == 200) {
+                            echo 'selected';
+                        }
+                        ?>>200</option>
+                    </select>
+                    строк.
+                </form>
+            </td>
+            <td id="r">
+                <form action="" method="post">
+                    Страница:
+                    <select name="page" onchange="if (this.value)
+                                this.form.submit()">
+                                <?php
+                                for ($page = 1; $page <= get_count_page(); $page++) {
+                                    echo "<option value=" . $page;
+                                    if ($page == $_SESSION['filter']['page']) {
+                                        echo " selected";
+                                    }
+                                    echo ">" . $page . "</option>
+                                    ";
+                                }
+                                ?>
+                    </select>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>

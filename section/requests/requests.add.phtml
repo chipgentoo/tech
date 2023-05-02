@@ -1,0 +1,23 @@
+<div class="title_name">
+    <h1>Заявки отделов</h1>
+    <h3>ГКУ МО "Мособлпожспас"</h3>
+</div>
+<div class="requests_add">
+    <form action="" method="post">
+        <table>
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>Заявка от <?php echo date('d.m.Y', time()) . ' от ' . filter_input(INPUT_COOKIE, 'username') ?></legend>
+                        <textarea name="note"></textarea>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Отправить</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

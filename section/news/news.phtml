@@ -1,0 +1,17 @@
+<?php
+
+if (!isset($_COOKIE['username']) or ! isset($_COOKIE['password'])) {
+    header('Location: ./auth/');
+}
+
+function get_action_template() {
+    $action = null;
+    if (isset($_GET['action'])) {
+        $action = '.' . filter_input(INPUT_GET, 'action');
+    } else {
+        $action = '.list';
+    }
+    include_once 'news' . $action . '.phtml';
+}
+
+get_action_template();

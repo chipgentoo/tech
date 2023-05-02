@@ -1,0 +1,23 @@
+<div class="title_name">
+    <h1>Список дел</h1>
+    <h3>сотрудника <?php echo filter_input(INPUT_COOKIE, "username"); ?></h3>
+</div>
+<div class="requests_add">
+    <form action="" method="post">
+        <table>
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>Задача от <?php echo date('d.m.Y', time()) . ' для ' . filter_input(INPUT_COOKIE, 'username') ?></legend>
+                        <textarea name="todo_content"></textarea>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Отправить</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

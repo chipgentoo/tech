@@ -1,0 +1,19 @@
+<div class="calc">
+    Кол-во заявок:&nbsp;<?php echo get_count_requests()[0][0]; ?>
+</div>
+<?php
+if (!isset($_COOKIE['username']) or ! isset($_COOKIE['password'])) {
+    header('Location: ./auth/');
+}
+
+function get_action_template() {
+    $action = null;
+    if (isset($_GET['action'])) {
+        $action = '.' . filter_input(INPUT_GET, 'action');
+    } else {
+        $action = '.list';
+    }
+    include_once 'requests' . $action . '.phtml';
+}
+
+get_action_template();

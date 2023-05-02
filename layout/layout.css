@@ -1,0 +1,529 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font: normal 12px/100% sans-serif;
+}
+
+body{
+    background-image: url(images/floating-cogs1.png);
+}
+
+h2{
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+title{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+/* Полосы вверху страницы*/
+.top_panel {
+    /* position: fixed;
+    left: 0px; top: 0px; */
+    width: 100%; height: 80px;
+    background-color: #ff9966;
+    text-align: right;
+    color: #3366cc;
+    font-weight: bold;
+    padding-top: 3px;
+}
+.top_panel a {
+    text-decoration: none;
+    padding: 0px 3px;
+    color: #990000;
+    font-weight: bold;
+}
+
+/* Меню на полосах вверху страницы*/
+.top_menu {
+    /* position: fixed;
+    left: 0px; top: 16px; */
+    width: 100%; height: 30px;
+    margin: 5px 0px;
+    padding: 5px 0px;
+    background-color: #6699ff;
+    text-align: center;
+}
+.top_menu a {
+    display: inline-block;
+    /* zoom: 1;*/
+    *display: inline;
+    vertical-align: baseline;
+    margin: 2px 2px;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 10px 5px;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    /* */
+    color: #ffffff;
+    border: solid 1px #003366;
+    background: #6699cc; /*цвет фона кнопки для браузеров без поддержки CSS3*/
+    background: -webkit-gradient(linear, left top, left bottom, from(#6699cc), to(#114477)); /* для Webkit браузеров */
+    background: -moz-linear-gradient(top,  #6699cc,  #114477); /* для Firefox */
+    background-image: -o-linear-gradient(top,  #6699cc,  #114477); /* для Opera 11 */
+    background: -ms-linear-gradient(top,  #6699cc,  #114477);; /* фильтр для IE */
+
+
+}
+.top_menu a:hover {
+    color: #ffffff;
+    background: #f47c20;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+    background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+    background-image: -o-linear-gradient(top,  #f88e11,  #f06015);/* для Opera 11 */
+    background: -ms-linear-gradient(top,  #f88e11,  #f06015);
+}
+
+/* Основная рабочай область для вывода */
+.container {
+    width: 100%;
+    margin: 0px auto;
+    margin-top: 0px;
+    border: 0px solid black;
+}
+table.container td{
+    vertical-align: top;
+}
+.message{
+    color: #990000;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* счетчик заявок */
+.calc{
+    font-weight: bolder;
+    font-size: 20px;
+    border: 0px solid black;
+    width: 230px;
+    position: absolute;
+    left: 0px;
+    top: 60px;
+    text-align: center;
+    color: #990000;
+}
+
+/* для заголовков */
+.title_name{
+    text-align: center;
+}
+.title_name h1{
+    font-size: 28px;
+    font-weight: bold;
+}
+.title_name h2{
+    font-size: 23px;
+    font-weight: bold;
+}
+.title_name h3{
+    font-size: 18px;
+    font-weight: bold;
+}
+.title_name img{
+    margin: 30px auto;
+    width: 200px;
+    height: auto;
+    border: none;
+}
+div.title_name{
+    height: auto;
+    margin: 2px;
+}
+table.title_name{
+    margin: 0px auto;
+}
+table.title_name td{
+    padding: 0px 5px;
+}
+
+.select{
+    border: 1px solid #663300;
+    background: #FFD663;
+    font-weight: bold;
+    color: #663300;
+}
+select.select{
+    width: 150px;
+}
+input.select{
+    width: 95px;
+}
+#select_segment{
+    margin: 0px auto;
+    text-align: center;
+}
+
+/* Полосатая построчная таблица*/
+table.zebra_tr {
+    width: 100%;
+}
+table.zebra_tr tr:nth-child(odd) {background: #f0f0ff;}
+table.zebra_tr tr:nth-child(even) {background: #e9e9ff;}
+table.zebra_tr tr:hover {background-color: #c9c9ff;}
+table.zebra_tr th {
+    font-weight: bold;
+    font-style: italic;
+    background-color: #ff9966;
+    padding: 2px 3px;
+    border: 1px solid #cc6633;
+}
+table.zebra_tr td {
+    border: 1px solid #c0c0c0;
+    padding: 1px 5px;
+    vertical-align: middle;
+}
+table.zebra_tr td button{
+    width: 20px; height: 20px;
+    vertical-align: middle;
+}
+table.zebra_tr td a {
+    color: #000000;
+}
+table.zebra_tr td#count {
+    text-align: right;
+    font-weight: bold;
+}
+
+/* */
+div.action {
+    border: 1px solid #C54000;
+    background: #FF9663;
+    width: 844px;
+    text-align: center;
+    margin: 0px 2px;
+    padding: 3px 0px;
+}
+div.action a {
+    text-decoration: none;
+    border: 1px solid #990000;
+    background: #C54000;
+    padding: 0px 5px;
+    font-weight: bold;
+    color: #FFD663;
+}
+div.action a:hover {
+    color: #C54000;
+    background: #FFD663;
+}
+
+div.form form{
+    border: 1px solid #9999ff;
+    background: #eaeaff;
+    width: 320px;
+    margin: 0px auto;
+}
+table.form{
+    margin: auto;
+    border-spacing: 5px;
+}
+table.form label{
+    font-weight: bold;
+}
+table.form input{
+    border: 1px solid #FFBC00;
+    background: #ffffdd;
+}
+table.form input#button{
+    border: 1px solid #003366;
+    background: #336699;
+    color: #ffff99;
+    font-weight: bold;
+}
+table.form td#button{
+    text-align: center;
+}
+fieldset#fld{
+    border: 1px solid #000000;
+    margin: 3px auto;
+    background: #FF7939;
+}
+legend{
+    border: 1px solid #000000;
+    margin-left: 10px;
+    padding: 0px 10px 0px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    background: #336699;
+    color: #ffff33;
+}
+input#fld_title {
+    border: 1px solid black;
+    background: #ffff99;
+    margin: 0px 10px 5px 0px;
+    width: 760px;
+}
+textarea#fld_note {
+    border: 1px solid black;
+    background: #ffff99;
+    margin: 0px 10px 0px 0px;
+    height: 200px;
+    width: 760px;
+}
+input#btn {
+    background: #053A64;
+    color: #ffD663;
+    font-weight: bold;
+    width: 100px;
+    height: 20px;
+    margin: 5px 0px 5px 400px;
+}
+button#btn_segm {
+    background: #ff9966;
+    border: 1px solid #cc6633;
+    color: #0066ff;
+    font-weight: bold;
+    width: 100px;
+    height: 20px;
+    margin: 10px 0px 10px 0px;
+}
+
+.container .filter{
+    margin: 0px; padding: 1px;
+    width: 100%;
+}
+
+.filter form{
+    margin: 0; padding: 0;
+    color: #ffff00;
+    text-align: left;
+}
+
+.filter fieldset{
+    /* width: 846px; */
+    width: auto;
+    border: 1px solid #003366;
+    margin: 0px; padding: 0px;
+    background: #99ccff;
+}
+.filter table{
+    width:  100%;
+}
+.filter td{
+    border: 0px solid black;
+    margin: 0px; padding: 0px;
+    color: #000099;
+    text-align: left;
+}
+.filter td#button{
+    width: 170px;
+}
+
+.filter input{
+    width: 100px;
+    border: 1px solid #0000ff;
+    padding: 0px;
+    margin: 2px;
+}
+.filter select{
+    width: 100px;
+    border: 1px solid #0000ff;
+    padding: 0px;
+    margin: 0px;
+}
+.filter button{
+    border: 1px solid #0000ff;
+    padding: 3px;
+    width: 160px;
+    background: #336699;
+    color: #ffff99;
+    margin-bottom: 10px;
+}
+.filter a{
+    border: 1px solid #990000;
+    padding: 3px;
+    width: 160px;
+    background: #ff9966;
+    color: #990000;
+    text-decoration: none;
+}
+.filter a:hover{
+    text-decoration: none;
+}
+
+
+div.requests_add{
+    width: 100%;
+}
+.requests_add form{
+}
+.requests_add table{
+    background: #ff9966;
+    margin: auto;
+    padding: 5px;
+    border: 1px solid black;
+}
+.requests_add fieldset{
+    background: #ffffff;
+    border: 1px solid black;
+}
+.requests_add legend{
+    background: #ACD6F5;
+    color: #000000;
+    padding: 2px 5px;
+}
+.requests_add textarea{
+    width: 620px;
+    height: 200px;
+    border: 1px solid black;
+}
+.requests_add button{
+    border: 1px solid #003366;
+    color: #ffff33;
+    background-color: #336699;
+    font-weight: bold;
+    margin: 5px 0px 0px 0px;
+    padding: 2px;
+}
+
+/* Переключатель страниц */
+.count{
+    border: 0px solid black;
+}
+div.count table{
+    width: 100%;
+    background-color: #ff9966;
+    border: 1px solid #cc6633;
+    padding: 0px 3px;
+}
+div.count td{
+    font-weight: bold;
+}
+div.count td#r{
+    text-align: right;
+}
+div.count td#l{
+    text-align: left;
+}
+div.count select{
+    border: 1px solid #000000;
+    width: 40px;
+}
+div.count a{
+    text-decoration: none;
+    margin: 0px 2px;
+    border: 1px solid #cc6633;
+}
+
+/* Новости */
+.news{
+    width: 100%;
+    margin: 0px 0px;
+    padding: 5px 10px;
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    background: #ffffff; /*цвет фона кнопки для браузеров без поддержки CSS3*/
+    background: -webkit-linear-gradient(top, rgba(255,255,255,.7), rgba(221,221,221,.7)); /* для Webkit браузеров */
+    background: -moz-linear-gradient(top,  rgba(255,255,255,.7),  rgba(221,221,221,.7)); /* для Firefox */
+    background: -o-linear-gradient(top,  rgba(255,255,255,.7),  rgba(221,221,221,.7)); /* для Opera 11 */
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dddddd'); /* фильтр для IE */
+
+}
+.news div#title{
+    border: 0px solid black;
+    padding: 5px 0px;
+    text-align: center;
+    font-weight: bold;
+    color: blue;
+}
+.news div#content{
+    text-align: justify;
+}
+.news div#content p{
+    margin: 5px 0px;
+    text-indent: 20px;
+}
+.news div#link{
+    text-align: right;
+}
+.news div#link a, a:hover {
+    color: red;
+}
+
+/* Список дел */
+.todo_btn_new{
+    text-align: left;
+}
+.todo_btn_new a{
+    margin: 3px; padding: 3px;
+    border: 1px solid #990000;
+    background: #ff9966;
+    color: #990000;
+    text-decoration: none;
+
+}
+
+.todo{
+    margin-top: 10px;
+    width: 100%; height: 100%;
+}
+.todo td#id{
+    width: 30px;
+}
+.todo td#data{
+    width: 80px;
+}
+.todo td#content{
+    width: auto;
+}
+.todo td#status{
+    width: 70px;
+}
+.todo td#button{
+    width: 20px;
+}
+
+/* Техническая информация */
+table.info{
+    width: 100%;
+}
+table.info td,th{
+    border: 1px solid black;
+}
+
+/* Справочния система */
+.help div{
+    margin: auto;
+    text-align: center;
+}
+.help a{
+    text-decoration: none;
+    color: blue;
+}
+.help table{
+    border: 1px;
+    width: 800px;
+}
+
+/* Загрузки */
+
+.download {
+    border: 0px solid black;
+}
+.download table{
+    width: 50%;
+}
+.download tr{
+    border: 1px solid red;
+}
+.download td{
+    border: 0px solid black;
+}

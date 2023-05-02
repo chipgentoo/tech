@@ -1,0 +1,32 @@
+<div class="title_name">
+    <h1>Список дел</h1>
+    <h3>сотрудника <?php echo filter_input(INPUT_COOKIE, "username"); ?></h3>
+</div>
+<?php
+if (isset($_GET['tid']) and filter_input(INPUT_GET, "tid") != NULL) {
+    $todotmp = get_todo_by_id(filter_input(INPUT_GET, "tid"));
+    ?>
+    <div class="requests_add">
+        <form action="" method="post">
+            <table>
+                <tr>
+                    <td>
+                        <fieldset>
+                            <legend>Задача от <?php echo date_format(date_create($todotmp['todo_date']), 'd-m-Y') . ' для ' . filter_input(INPUT_COOKIE, 'username') ?></legend>
+                            <textarea name="todo_content"><?php echo $todotmp['todo_content']; ?></textarea>
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" onclick="history.back()">Закрыть</button>
+                        <button type="submit" name="update" value="<?php echo filter_input(INPUT_GET, "tid") ?>">Обновить</button>
+                        <button type="submit" name="end" value="<?php echo filter_input(INPUT_GET, "tid") ?>">Завершить</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <?php
+}
+?>

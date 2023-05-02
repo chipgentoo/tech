@@ -1,0 +1,43 @@
+<?php
+if (!isset($_COOKIE['username']) or ! isset($_COOKIE['password'])) {
+    header('Location: ./auth/');
+}
+?>
+<div class="title_name">
+    <h1>Новости</h1>
+    <h3>ГКУ МО "Мособлпожспас"</h3>
+</div>
+<?php
+if (!isset($_COOKIE['username']) or ! isset($_COOKIE['password'])) {
+    header('Location: ./auth/');
+}
+?>
+<div class="requests_add">
+    <form action="" method="post" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td>
+                    Заголовок:&nbsp;<input name="title" type="text" size="60">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>Новость от <?php echo date('d.m.Y', time()) . ' от ' . filter_input(INPUT_COOKIE, 'username') ?></legend>
+                        <textarea name="notes"></textarea>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Ссылка на новость:&nbsp;<input name="link" type="url" size="50">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Добавить новость</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

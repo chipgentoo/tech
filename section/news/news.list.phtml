@@ -1,0 +1,28 @@
+<?php
+if (!isset($_COOKIE['username']) or ! isset($_COOKIE['password'])) {
+    header('Location: ./auth/');
+}
+?>
+<div class="title_name">
+    <h1>Новости</h1>
+    <h3>ГКУ МО "Мособлпожспас"</h3>
+</div>
+<div class="container">
+    <table>
+        <?php foreach (get_list_news() as $value) {?>
+        <tr>
+            <td>
+                <div class="news">
+                    <div id="title"><?php echo $value[3]; ?></div>
+                    <div id="content"><p><?php echo $value[4]; ?></p></div>
+                    <?php
+                        if ($value[5] !='') {
+                            echo '<div id="link"><a href="'.$value[5].'" target="_blank">подробнее...</a></div>';
+                        };
+                    ?>
+                </div>
+            </td>
+        </tr>
+        <?php }?>
+    </table>
+</div>
